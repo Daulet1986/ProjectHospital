@@ -1,13 +1,14 @@
 public class Person{
 
     private int id;
+    private static int id_gen = 1;
     private String name;
     private String surname;
     private int age;
     private String phone_num;
 
     public Person(){
-        id = id++;
+        id = id_gen++;
     }
 
     public Person(int id, String name, String surname,int age, String phone_num){

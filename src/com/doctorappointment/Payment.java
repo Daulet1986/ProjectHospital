@@ -1,3 +1,5 @@
+package com.doctorappointment;
+
 public class Payment {
     private String doctor;
     private String department;
@@ -14,10 +16,10 @@ public class Payment {
 
     public boolean processedPayment(Float amount) {
         if (amount < this.price) {
-            console.log("Error: Payment amount is less than the total cost");
+            console.log("Error: com.doctorappointment.Payment amount is less than the total cost");
             return false;
         }else {
-            console.log("Payment accepted. Thank you for your visit!");
+            console.log("com.doctorappointment.Payment accepted. Thank you for your visit!");
             return true;
         }
     }

@@ -1,3 +1,5 @@
+package com.doctorappointment;
+
 import java.lang.reflect.Array;
 
 public class Department {

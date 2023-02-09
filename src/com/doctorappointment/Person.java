@@ -1,3 +1,5 @@
+package com.doctorappointment;
+
 public class Person{
 
     private int id;

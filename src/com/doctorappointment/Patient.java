@@ -1,4 +1,6 @@
-public class Patient extends Person{
+package com.doctorappointment;
+
+public class Patient extends Person {
     private String UIN;
     private String adress;
     private int insurance_amount;

@@ -6,10 +6,10 @@ public class Department {
     private String name;
     private String head;
     private Array doctors;
-    public Department(String name, String head, Array doctors) {
-        this.name = name;
-        this.head = head;
-        this.doctors = doctors;
+    public Department(String name, String head, Array doctors){
+        setDoctorName(name);
+        setHeadName(head);
+        setDoctorList(doctors);
     }
 
     public String getDoctorName(){

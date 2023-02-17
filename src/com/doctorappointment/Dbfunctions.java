@@ -1,12 +1,8 @@
 package com.doctorappointment;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Dbfunctions {
-    public Connection connect_to_db(String dbname, String user, String pass){
+    public Connection connect_to_db(String dbname,String user,String pass){
         Connection conn=null;
         try {
             Class.forName("org.postgresql.Driver");
@@ -25,7 +21,9 @@ public class Dbfunctions {
     public void createTable(Connection conn,String table_name){
         Statement statement;
         try {
-            String query="create table "+table_name+"(empid SERIAL,name varchar(200),address varchar(200),primary key(empid));";
+            String query="create table "+table_name+"(id serial primary key, IIN float," +
+                    " name varchar(20), surname varchar(20), gender boolean, age int, address varchar(20)," +
+                    " insurance boolean, payment varchar(20));";
             statement=conn.createStatement();
             statement.executeUpdate(query);
             System.out.println("Table created");
@@ -33,108 +31,15 @@ public class Dbfunctions {
             System.out.println(e);
         }
     }
-    public void insert_row(Connection conn,String table_name,String name,String address ){
-        Statement statement;
-        try{
-            String query=String.format("insert into %s(name,address) values ('%s','%s');",table_name,name,address);
-            statement=conn.createStatement();
-            statement.executeUpdate(query);
-            System.out.println("Row inserted");
-        }
-        catch(Exception e){
-            System.out.println(e);
-        }
-    }
-    public void read_data(Connection conn,String table_name){
-        Statement statement;
-        ResultSet rs=null;
-        try{
-            String query=String.format("select*from %s",table_name);
-            statement=conn.createStatement();
-            rs=statement.executeQuery(query);
-            while(rs.next()){
-                System.out.print(rs.getString("empid")+" ");
-                System.out.print(rs.getString("name")+" ");
-                System.out.println(rs.getString("Address")+" ");
-            }
-        }
-        catch (Exception e){
-            System.out.println(e);
-        }
-    }
-    public void update_name(Connection conn,String table_name,String old_name,String new_name){
-        Statement statement;
-        try {
-            String query=String.format("update %s set name='%s' where name='%s'",table_name,new_name,old_name);
-            statement=conn.createStatement();
-            statement.executeUpdate(query);
-            System.out.println("Data updated");
-        }catch (Exception e){
-            System.out.println(e);}
-    }
-    public void search_by_name(Connection conn,String table_name,String name){
-        Statement statement;
-        ResultSet rs=null;
-        try {
-            String query=String.format("select *  from %s where name= '%s'",table_name,name);
-            statement=conn.createStatement();
-            rs=statement.executeQuery(query);
-            while (rs.next()){
-                System.out.print(rs.getString("empid" )+" ");
-                System.out.print(rs.getString("name")+" ");
-                System.out.println(rs.getString("address"));
-            }
 
-        }catch (Exception e){
-            System.out.println(e);
-        }
-    }
-    public void search_by_id(Connection conn,String table_name,int id){
+    public void createTableDoc(Connection conn,String table_name){
         Statement statement;
-        ResultSet rs=null;
         try {
-            String query=String.format("select *  from %s where empid= %s",table_name,id);
+            String query="create table "+table_name+"(id serial primary key, name varchar(20), " +
+                    "surname varchar(20), specialty varchar(20), time varchar(50));";
             statement=conn.createStatement();
-            rs=statement.executeQuery(query);
-            while (rs.next()){
-                System.out.print(rs.getString("empid" )+" ");
-                System.out.print(rs.getString("name")+" ");
-                System.out.println(rs.getString("address"));
-            }
+            statement.executeUpdate(query);
 
-        }catch (Exception e){
-            System.out.println(e);
-        }
-    }
-    public void delete_row_by_name(Connection conn,String table_name,String name){
-        Statement statement;
-        try{
-            String query=String.format("delete from %s where name='%s'",table_name,name);
-            statement=conn.createStatement();
-            statement.executeUpdate(query);
-            System.out.println("Data deleted");
-        }catch (Exception e){
-            System.out.println(e);
-        }
-    }
-    public void delete_row_by_id(Connection conn,String table_name,int id){
-        Statement statement;
-        try{
-            String query=String.format("delete from %s where empid= %s",table_name,id);
-            statement=conn.createStatement();
-            statement.executeUpdate(query);
-            System.out.println("Data deleted");
-        }catch (Exception e){
-            System.out.println(e);
-        }
-    }
-    public void  delete_table(Connection conn,String table_name){
-        Statement statement;
-        try {
-            String query=String.format("drop table %s",table_name);
-            statement=conn.createStatement();
-            statement.executeUpdate(query);
-            System.out.println("Table deleted");
         }catch (Exception e){
             System.out.println(e);
         }

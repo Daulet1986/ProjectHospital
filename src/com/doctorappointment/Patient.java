@@ -2,18 +2,18 @@ package com.doctorappointment;
 
 public class Patient extends Person {
     private String UIN;
-    private String adress;
+    private int area;
     private int insurance_amount;
     public Patient(){
         super();
     }
 
-    public Patient(String name, String surname, int age, String UIN, String phone_num, String adress, int insurance_amount){
+    public Patient(String name, String surname, int age, String UIN, String phone_num, int area, int insurance_amount){
         setName(name);
         setSurname(surname);
         setAge(age);
         setUIN(UIN);
-        setAdress(adress);
+        setArea(area);
         setInsurance(insurance_amount);
     }
 
@@ -21,8 +21,8 @@ public class Patient extends Person {
     public String getUIN(){
         return UIN;
     }
-    public String getAdress(){
-        return adress;
+    public int getArea(){
+        return area;
     }
     public int getInsurance(){
         return insurance_amount;
@@ -31,8 +31,8 @@ public class Patient extends Person {
     public void setUIN(String UIN){
         this.UIN = UIN;
     }
-    public void setAdress(String adress){
-        this.adress = adress;
+    public void setArea(int area){
+        this.area = area;
     }
     public void setInsurance(int insurance_amount){
         this.insurance_amount = insurance_amount;

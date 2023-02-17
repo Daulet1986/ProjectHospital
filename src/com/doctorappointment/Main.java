@@ -1,14 +1,16 @@
-import com.doctorappointment.Dbfunctions;
+package com.doctorappointment;
+
 
 import java.sql.*;
 import java.sql.Connection;
 import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         Dbfunctions db = new Dbfunctions();
-        Connection conn=db.connect_to_db("postgres","postgres","atterol");
+        Connection conn=db.connect_to_db("postgres","postgres","DDAA2005");
 
         db.createTable(conn,"patients");
         db.createTableDoc(conn,"doctors");
@@ -81,7 +83,7 @@ public class Main {
                 preparedStatement.executeUpdate();
             }
 
-            else if(command == 4){
+else if(command == 4){
                 String sql = "delete from patients where id = ?";
                 PreparedStatement preparedStatement = conn.prepareStatement(sql);
                 System.out.println("Input patient id:");

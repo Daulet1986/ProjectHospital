@@ -1,4 +1,4 @@
-package obkatka;
+package com.doctorappointment;
 
 public class Payment {
     private String doctor;

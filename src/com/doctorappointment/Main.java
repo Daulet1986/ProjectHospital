@@ -10,10 +10,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         Dbfunctions db = new Dbfunctions();
-        Connection conn=db.connect_to_db("postgres","postgres","DDAA2005");
-
-        db.createTable(conn,"patients");
-        db.createTableDoc(conn,"doctors");
+        Connection conn=db.connect_to_db("postgres","postgres","juiceWRLD1");
 
         while(true){
             System.out.println("1. List all patients");

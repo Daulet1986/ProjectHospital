@@ -148,6 +148,183 @@ public class Screen {
                     System.out.println("Error: " + e.getMessage());
                 }
             }
+                else if(command == 4){
+                    System.out.println("Do you want to continue?(Yes(Y)/No(N))");
+                    String input = scanner.next();
+                    try {
+                    if (input.equalsIgnoreCase("N")) {
+                    System.out.println("Exiting...");
+                    continue;
+                    } else if (input.equalsIgnoreCase("Y")) {
+                    String sql = "delete from patients where id = ?";
+                    PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                    System.out.println("Input patient id:");
+                    int patientId = scanner.nextInt();
+                    preparedStatement.setInt(1, patientId);
+                    preparedStatement.executeUpdate();}
+                    else {
+                    throw new IllegalArgumentException("Invalid input. Please enter 'exit' or 'continue'.");
+                    }}catch (IllegalArgumentException | SQLException e){
+                    System.out.println("Error: " + e.getMessage());
+                    }}
+                    else if(command == 5) {
+                    System.out.println("Do you want to continue?(Yes(Y)/No(N))");
+                    String input = scanner.next();
+                    try {
+                    if (input.equalsIgnoreCase("N")) {
+                    System.out.println("Exiting...");
+                    continue;
+                    } else if (input.equalsIgnoreCase("Y")) {
+                    String  iinToCheck;
+                    System.out.print("Enter IIN to check: ");
+                    if (scanner.hasNextFloat()) {
+                    iinToCheck = scanner.next();
+                    }
+                    else {
+                    System.out.println("Invalid IIN entered. Exiting.");
+                    return;
+                    }
+                    boolean recordExists = false;
+                    String query = "select iin from patients where iin = ?";
+                    PreparedStatement statement = conn.prepareStatement(query);
+                    statement.setString(1, iinToCheck);
+                    ResultSet resultSet = statement.executeQuery();
+                    if (resultSet.next()) {
+                    recordExists = true;
+                    }
+                    if (recordExists) {
+                    System.out.println("Patient with IIN " + iinToCheck + " exists in the database.");
+                    }
+                    else {
+                    System.out.println("Patient with IIN " + iinToCheck + " does not exist in the database.");
+                    }
+
+                    } else {
+                    throw new IllegalArgumentException("Invalid input. Please enter 'exit' or 'continue'.");
+                    }}catch(IllegalArgumentException | SQLException e){
+                    System.out.println("Error: " + e.getMessage());
+                    }}
+
+                    Даулет, [20.02.2023 6:50]
+                    else if (command == 6){
+                    System.out.println("Do you want to continue?(Yes(Y)/No(N))");
+                    String input = scanner.next();
+                    try {
+                    if (input.equalsIgnoreCase("N")) {
+                    System.out.println("Exiting...");
+                    continue;
+                    } else if (input.equalsIgnoreCase("Y")) {
+                    System.exit(0);}
+                    else {
+                    throw new IllegalArgumentException("Invalid input. Please enter 'exit' or 'continue'.");
+                    }}catch(IllegalArgumentException e){
+                    System.out.println("Error: " + e.getMessage());
+                    }}
+                    else if(command==7) {
+                    System.out.println("Do you want to continue?(Yes(Y)/No(N))");
+                    String input = scanner.next();
+                    try {
+                    if (input.equalsIgnoreCase("N")) {
+                    System.out.println("Exiting...");
+                    continue;
+                    } else if (input.equalsIgnoreCase("Y")) {
+                    db.delete_table(conn,"patients");
+                    } else {
+                    throw new IllegalArgumentException("Invalid input. Please enter 'exit' or 'continue'.");
+                    }
+                    } catch (IllegalArgumentException e) {
+                    System.out.println("Error: " + e.getMessage());
+                    }
+                    }
+                    else if(command==8){
+                    System.out.println("Do you want to continue?(Yes(Y)/No(N))");
+                    String input = scanner.next();
+                    try {
+                    if (input.equalsIgnoreCase("N")) {
+                    System.out.println("Exiting...");
+                    continue;}
+                    else if (input.equalsIgnoreCase("Y")) {
+                    System.out.println("Please enter IIN :");
+                    Scanner scan = new Scanner(System.in);
+                    String een = scan.nextLine();
+                    db.readTable(conn,"patients", een);
+                    System.out.println("Please enter Position of doctor");
+                    String pos = scan.nextLine();
+                    employee.readTable(conn,"employee", pos);
+                    //appointment.creatTabApp(conn,"appointments");
+                    appointment.addAppoint(conn,"appointments", db.getName(), db.getSurname(), employee.getTime(), employee.getPosition());
+                    }
+                    else {
+                    throw new IllegalArgumentException("Invalid input. Please enter 'exit' or 'continue'.");
+                    }
+                    }
+                    catch (IllegalArgumentException e) {
+                    System.out.println("Error: " + e.getMessage());
+                    } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                    }
+
+                    Даулет, [20.02.2023 6:50]
+                    }
+                    else if(command==9){
+                    System.out.println("Do you want to continue(Yes(Y)/No(N))?");
+                    String input = scanner.next();
+                    try {
+                    if (input.equalsIgnoreCase("N")) {
+                    System.out.println("Exiting...");
+                    continue;}
+                    else if (input.equalsIgnoreCase("Y")) {
+                    db.delete_table(conn,"appointments");}
+                    else{
+                    throw new IllegalArgumentException("Invalid input. Please enter 'exit' or 'continue'.");
+                    }}catch (IllegalArgumentException e) {
+                    System.out.println("Error: " + e.getMessage());
+                    }}
+                    else if(command == 10){
+                    System.out.println("Do you want to continue?(Yes(Y)/No(N))");
+                    String input = scanner.next();
+                    try {
+                    if (input.equalsIgnoreCase("N")) {
+                    System.out.println("Exiting...");
+                    continue;
+                    } else if (input.equalsIgnoreCase("Y")) {
+                    String sql = "delete from appointments where id = ?";
+                    PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                    System.out.println("Input patient id:");
+                    int patientId = scanner.nextInt();
+                    preparedStatement.setInt(1, patientId);
+                    preparedStatement.executeUpdate();}
+                    else {
+                    throw new IllegalArgumentException("Invalid input. Please enter 'exit' or 'continue'.");
+                    }}catch (IllegalArgumentException | SQLException e){
+                    System.out.println("Error: " + e.getMessage());
+                    }}
+                    if(command == 11){
+                    System.out.println("Do you want to continue(Yes(Y)/No(N))?");
+                    String input = scanner.next();
+                    try {
+                    if (input.equalsIgnoreCase("N")) {
+                    System.out.println("Exiting...");
+                    continue;
+                    } else if (input.equalsIgnoreCase("Y")) {
+                    Statement statement = conn.createStatement();
+                    String SQL_SELECT_TASKS = "select * from appointments";
+                    ResultSet result = statement.executeQuery(SQL_SELECT_TASKS);
+                    while(result.next()){
+                    System.out.println(result.getInt("id") + ". " +
+                    result.getString("name") + " " +
+                    result.getString("surname") + ", " +
+                    result.getString("time") + ", " +
+                    result.getString("position"));}
+                    }else {
+                    throw new IllegalArgumentException("Invalid input. Please enter 'exit' or 'continue'.");
+                    }
+                    } catch (IllegalArgumentException | SQLException e) {
+                    System.out.println("Error: " + e.getMessage());
+                    }}
+                    else {
+                        System.err.println("Command not found");
+                    }
         }
     }
 }

@@ -263,8 +263,6 @@ public class Screen {
                     } catch (SQLException e) {
                     throw new RuntimeException(e);
                     }
-
-                    Даулет, [20.02.2023 6:50]
                     }
                     else if(command==9){
                     System.out.println("Do you want to continue(Yes(Y)/No(N))?");

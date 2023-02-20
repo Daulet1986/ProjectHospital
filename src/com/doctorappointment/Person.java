@@ -1,13 +1,14 @@
 package com.doctorappointment;
 
-public class Person{
+import java.sql.Connection;
+
+public abstract class Person{
 
     private int id;
     private static int id_gen = 1;
-    private String name;
+    protected String name;
     private String surname;
     private int age;
-    private String phone_num;
 
     public Person(){
         id = id_gen++;
@@ -17,7 +18,6 @@ public class Person{
         this.name=name;
         this.surname = surname;
         this.age = age;
-        this.phone_num = phone_num;
     }
 
     ///Getters
@@ -33,9 +33,7 @@ public class Person{
     public String getSurname(){
         return surname;
     }
-    public String getNum(){
-        return phone_num;
-    }
+
     ///Setters
     public void setAge(int age){
         this.age = age;
@@ -46,7 +44,6 @@ public class Person{
     public void setSurname(String surname){
         this.surname = surname;
     }
-    public void setNum(String phone_num){
-        this.phone_num = phone_num;
-    }
+
+    public abstract void createTable(Connection conn, String table_name);
 }

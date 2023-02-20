@@ -1,50 +1,45 @@
 package com.doctorappointment;
+import java.util.Scanner;
+import java.sql.SQLException;
 
-public class Payment {
-    private String doctor;
-    private float price;
-    private boolean insurance;
-    public Payment(String doctor, float price, boolean insurance) {
-        setDoctor(doctor);
-        setPrice(price);
-        setInsurance(insurance);
+public class Payment extends Dbfunctions  {
+    private boolean appoint;
+    public boolean getAppoint(){
+        return appoint;
     }
-
-    public float calculateTotal() {
-        if (insurance) {
-            return 0.0f;
-        }
-        return price;
-    }
-
-    public String getDoctor(){return doctor;}
-    public float getPrice() {return price;}
-    public boolean getInsurance(){return insurance;}
-
-    public void setDoctor(String doctor){this.doctor = doctor;}
-    public void setPrice(float price){this.price = price;}
-    public void setInsurance(boolean insurance){this.insurance = insurance;}
-
-    public boolean processPayment(float amount) {
-
+    Dbfunctions db = new Dbfunctions();
+    Scanner scanner=new Scanner(System.in);
+    Employee employee=new Employee();
+    float amount;
+    public String iin;
+    public String pos;
+    public boolean processPayment() throws SQLException {
         try {
-            if (insurance == false) {
-                System.out.println("Insurance was not found. Processing payment...");
-                if (amount < this.price) {
+            System.out.println("Confirm IIN of patient:");
+            String IIN=scanner.nextLine();
+            iin=IIN;
+            System.out.println("Confirm position of doctor:");
+            String position=scanner.nextLine();
+            db.readTable(connect_to_db("postgres","postgres","autochthonous"),"patients",IIN);
+            employee.readTable(connect_to_db("postgres","postgres","autochthonous"),"employee",position);
+            if (db.getInsurance() == true) {
+                System.out.println("Insurance is found. Your appointment will now be set.");
+                if (db.getPayment() < employee.getPrice()) {
                     System.out.println("Payment denied. Try again later.");
-                    return false;
+                    appoint=false;
                 } else {
                     System.out.println("Payment accepted. Your appointment will now be set.");
-                    return true;
+                    appoint=true;
                 }
-            } else {
-                System.out.println("Insurance is found. Your appointment will now be set.");
             }
-            return true;
+            else {
+                System.out.println("Insurance was not found.");
+                appoint=false;
+            }
         } catch (Exception e) {
             System.out.println("Error occurred while processing the payment. Try again later!");
         }
-        return true;
+        return appoint;
     }
 
 }

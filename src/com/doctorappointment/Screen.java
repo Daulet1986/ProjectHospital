@@ -5,12 +5,20 @@ import java.util.Scanner;
 public class Screen {
     Scanner scanner = new Scanner(System.in);
     Dbfunctions db = new Dbfunctions();
+<<<<<<< HEAD
+    Patient patient=new Patient();
+    Employee employee=new Employee();
+    Appointment appointment=new Appointment();
+    Payment payment=new Payment();
+    public void employeeTab(){
+=======
     Patient patient = new Patient();
     Employee employee = new Employee();
     Appointment appointment = new Appointment();
     Payment payment = new Payment();
 
     public void employeeTab() {
+>>>>>>> origin/master
         //employee.createTable(db.connect_to_db("postgres","postgres","DDAA2005"),"employee");
         //employee.addDoc(db.connect_to_db("postgres","postgres","DDAA2005"),"employee","Muhtar","Aliev","Therapist","13:00-16:00","7000" );
         //employee.addDoc(db.connect_to_db("postgres","postgres","DDAA2005"),"employee","Alisher","Maratov","Dermatologist","9:00-12:00","8000" );
@@ -19,9 +27,15 @@ public class Screen {
         //employee.addDoc(db.connect_to_db("postgres","postgres","DDAA2005"),"employee","Dimash","Bolatov","Neuropathologist","14:00-16:00","7500" );
     }
 
+<<<<<<< HEAD
+    public void screenFunctions(){
+        Connection conn=db.connect_to_db("postgres","postgres","DDAA2005");
+        while(true) {
+=======
     public void screenFunctions() {
         Connection conn = db.connect_to_db("postgres", "postgres", "DDAA2005");
         while (true) {
+>>>>>>> origin/master
             System.out.println("0. Create database of patients");
             System.out.println("1. List all patients");
             System.out.println("2. Update information");
@@ -78,6 +92,11 @@ public class Screen {
                 } catch (IllegalArgumentException e) {
                     System.out.println("Error: " + e.getMessage());
                 }
+<<<<<<< HEAD
+            }
+
+        }}}
+=======
             } else if (command == 2) {
                 System.out.println("Do you want to continue?(Yes(Y)/No(N))");
                 String input = scanner.next();
@@ -326,3 +345,4 @@ public class Screen {
         }
     }
 }
+>>>>>>> origin/master

@@ -20,8 +20,8 @@ public class Payment extends Dbfunctions  {
             iin=IIN;
             System.out.println("Confirm position of doctor:");
             String position=scanner.nextLine();
-            db.readTable(connect_to_db("postgres","postgres","autochthonous"),"patients",IIN);
-            employee.readTable(connect_to_db("postgres","postgres","autochthonous"),"employee",position);
+            db.readTable(connect_to_db("postgres","postgres","DDAA2005"),"patients",IIN);
+            employee.readTable(connect_to_db("postgres","postgres","DDAA2005"),"employee",position);
             if (db.getInsurance() == true) {
                 System.out.println("Insurance is found. Your appointment will now be set.");
                 if (db.getPayment() < employee.getPrice()) {

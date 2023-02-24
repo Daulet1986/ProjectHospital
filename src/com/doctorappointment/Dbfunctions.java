@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 
-public class Dbfunctions extends ConnectiontoDB implements readTab {
+public class Dbfunctions extends ConnectiontoDb implements readTab {
     private String name = "";
     private String surname = "";
     private boolean insurance;
@@ -53,4 +53,6 @@ public class Dbfunctions extends ConnectiontoDB implements readTab {
             System.out.println(e);
         }
     }
+
+
 }
